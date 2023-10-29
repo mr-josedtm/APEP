@@ -16,9 +16,8 @@ class ApepFlowBuilder:
 
     @classmethod
     def init_flow(sel, apep_input: ApepInput, params: ApepParams) -> ApepFlow:
-    # Comprobar que las variables de entorno requeridas existen
-    # Comprobar que los parámetros necesarios se han recibido
-    # Comprobar que el input es válido y PARSEARLO AL OBJETO INTERNO
-
-    # Devolver el flow que se va a lanzar y validado
+    # Check if required env variables exists
+    # Check if required params are recieved
+    # Check input data
+    # Return the flow to execute configured
         pass
