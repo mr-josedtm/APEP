@@ -27,4 +27,4 @@ class SumBuilder(ApepFlowBuilder):
             value = data_parser(required_field, required_validations, apep_input)
             setattr(sum_dto, required_field, value)
 
-        return SumFlow(sum_dto, params)
+        return SumFlow(params, sum_dto)

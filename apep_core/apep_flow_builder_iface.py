@@ -11,8 +11,7 @@ from .apep_field_type import ApepFieldType as ft
 
 class ApepFlowBuilder:
 
-    def get_input_contract(cls) -> Dict:
-        # return {"first_key": (fd.REQUIRED, ft.INTEGER), "second_key":  (fd.NULLABLE, ft.STRING),  "third_key":  (fd.OPTIONAL, ft.FLOAT)}
+    def get_input_contract() -> Dict:
         pass
 
     @classmethod
