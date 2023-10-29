@@ -18,3 +18,6 @@ class ApepOutput:
 
     def set_execution_end(self, status: ApepStatus = ApepStatus.OK, message: str = "Execution ended") -> None:
         self.metadata.set_execution_end(status, message)
+
+    def get_results(self):
+        return self.success_result
