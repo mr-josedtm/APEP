@@ -11,7 +11,7 @@ from apep_core.apep_field_type import ApepFieldType as ft
 from .squaring_flow import SquaringFlow
 from .squaring_dto import SquaringDto
 
-class SumBuilder(ApepFlowBuilder):
+class SquaringBuilder(ApepFlowBuilder):
 
     def get_input_contract() -> Dict:
         return {"base": (fd.REQUIRED, ft.INTEGER)}
