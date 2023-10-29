@@ -2,7 +2,12 @@ from typing import Dict, List, Tuple
 from .apep_field_def import ApepFieldDef as fd
 from .apep_input import ApepInput
 
+##### ORCHESTRATOR UTILS #####
 
+def get_output_object_key(ouput_object: object) -> List[str]:
+    return list(ouput_object.__dict__.keys())
+
+##### BUILDER UTILS #####
 def check_required_fields(input_contract: Dict, data_fields: List) -> None:
     if not input_contract or not data_fields:
         # TODO

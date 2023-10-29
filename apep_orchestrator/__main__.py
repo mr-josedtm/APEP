@@ -1,9 +1,12 @@
 from apep_core.apep_input import ApepInput
 from apep_core.apep_params import ApepParams
 from apep_core.apep_output import ApepOutput
+from apep_core.apep_utils import get_output_object_key, check_required_fields
 
 from sum_flow.sum_builder import SumBuilder
 from squaring_flow.squaring_builder import SquaringBuilder
+
+from .mappers.sum_to_squaring_mapper import sum_result_to_squaring_input_contract
 
 # EXECUTOR SIMULATION
 if __name__ == "__main__":
@@ -21,13 +24,9 @@ if __name__ == "__main__":
    print(sum_flow_result.get_results())
 
 
-   for result in sum_flow_result.get_results():
-      # XXX El tema de que si los campos de salida del anterior no tienen nada que ver con este, peta
-      # Recordar que el builder informa del contrato, intentar aprovecharlo
-      # sum_result_to_squaring_input_contract
-
-      squaring_apep_i = ApepInput(result)
-      squaring_flow = SquaringBuilder.init_flow(sum_apep_i, apep_params)
+   for result in sum_flow_result.get_results():   
+      squaring_apep_i = ApepInput(sum_result_to_squaring_input_contract(result))
+      squaring_flow = SquaringBuilder.init_flow(squaring_apep_i, apep_params)
       squaring_flow_result = squaring_flow.execute()
       print("SquaringFlow Result:")
       print(squaring_flow_result.__dict__)

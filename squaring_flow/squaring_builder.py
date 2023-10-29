@@ -17,6 +17,7 @@ class SquaringBuilder(ApepFlowBuilder):
         return {"base": (fd.REQUIRED, ft.INTEGER)}
 
     @classmethod
+    # Refactor class methods
     def init_flow(cls, apep_input: ApepInput, params: ApepParams) -> ApepFlow:
 
         check_required_fields(cls.get_input_contract(), apep_input.get_data_fields())
