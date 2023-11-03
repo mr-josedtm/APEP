@@ -14,10 +14,9 @@ class ApepFlowBuilder:
     def get_input_contract() -> Dict:
         pass
 
+    def check_required_envs() -> None:
+        pass
+
     @classmethod
-    def init_flow(sel, apep_input: ApepInput, params: ApepParams) -> ApepFlow:
-    # Check if required env variables exists
-    # Check if required params are recieved
-    # Check input data
-    # Return the flow to execute configured
+    def build_flow(sel, apep_input: ApepInput, params: ApepParams) -> ApepFlow:
         pass

@@ -11,7 +11,7 @@ class ApepMetadata:
     execution_init_time: datetime = datetime.now()
     execution_end_time: datetime = None
     execution_time: datetime = None
-    status: ApepStatus = None
+    status: ApepStatus = ApepStatus.RUNNING
     message: str = None
     # Free field to store any information about the flow and persist it in the database
     metadata_result: dict = field(default_factory=dict)

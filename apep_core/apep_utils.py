@@ -2,13 +2,7 @@ from typing import Dict, List, Tuple
 from .apep_field_def import ApepFieldDef as fd
 from .apep_input import ApepInput
 
-##### ORCHESTRATOR UTILS #####
-
-def get_output_object_key(ouput_object: object) -> List[str]:
-    return list(ouput_object.__dict__.keys())
-
-##### BUILDER UTILS #####
-def check_required_fields(input_contract: Dict, data_fields: List) -> None:
+def _check_required_fields(input_contract: Dict, data_fields: List) -> None:
     if not input_contract or not data_fields:
         # TODO
         raise Exception("Not input contract or data fields provided")
@@ -26,7 +20,7 @@ def check_required_fields(input_contract: Dict, data_fields: List) -> None:
     
 
 # Coge el ApepInput, lo valida y devuelve el objeto que espera el flow
-def data_parser(required_field: str, required_validations: Tuple, apep_input: ApepInput ) -> any:
+def _data_parser(required_field: str, required_validations: Tuple, apep_input: ApepInput ) -> any:
 
     definition_type = required_validations[0]
     value_type = required_validations[1]
@@ -41,3 +35,13 @@ def data_parser(required_field: str, required_validations: Tuple, apep_input: Ap
     else:
         #TODO more descriptive exception
         raise Exception(f"Not matching type for {required_field}")
+    
+def input_to_dto(input_contract: Dict, apep_input: ApepInput, dto: object) -> object:
+
+        _check_required_fields(input_contract, apep_input.get_data_fields())
+
+        for required_field, required_validations in input_contract.items():            
+            value = _data_parser(required_field, required_validations, apep_input)
+            setattr(dto, required_field, value)
+
+        return dto
