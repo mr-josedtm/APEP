@@ -3,6 +3,12 @@
 
 # Filosofía:
 
+**Permitir el caos pero ser capaz de controlarlo**
+
+Facilitar el desarrollo de componentes orquestables capaces de funcionar como parte de una arquitectura o como un componente aislado (lo que facilita su implementación). 
+Orientación serverless.
+Mantener separada la ejecución de la observación.
+
 > 📝 **_TODO_**:
 > * Todos los resultados del step N-1 deben procesarse y finalizar en el step N antes de lanzar ninguna ejecución del step N+1. Solo se lanzarán aquellos que finalicen OK.
 > * ¿Ejecuciones priorizadas? La salida de un step va parametrizada para priorizarlas y hasta que no estén terminadas todas las de orden X-1 no se lanzan las de orden X
