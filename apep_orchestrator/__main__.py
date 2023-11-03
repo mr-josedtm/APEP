@@ -22,6 +22,7 @@ if __name__ == "__main__":
    print(sum_flow_result.__dict__)
    print(sum_flow_result.get_results())
 
+   print("Saving metadata: ", sum_flow_result.metadata)
 
    for result in sum_flow_result.get_results():
 
@@ -31,5 +32,6 @@ if __name__ == "__main__":
       squaring_apep_i = ApepInput(result, sum_result_to_squaring_input_contract)
       squaring_flow = SquaringBuilder.build_flow(squaring_apep_i, apep_params)
       squaring_flow_result = squaring_flow.execute()
+      print("Saving metadata: ", squaring_flow_result.metadata)
       print("SquaringFlow Result:")
       print(squaring_flow_result.__dict__)
