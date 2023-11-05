@@ -3,8 +3,6 @@
 
 # Filosofía:
 
-**Permitir el caos pero ser capaz de controlarlo**
-
 Facilitar el desarrollo de componentes orquestables capaces de funcionar como parte de una arquitectura o como un componente aislado (lo que facilita su implementación). 
 Orientación serverless.
 Mantener separada la ejecución de la observación.
