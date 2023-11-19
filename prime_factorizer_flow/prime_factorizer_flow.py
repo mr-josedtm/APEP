@@ -6,12 +6,12 @@ from apep_core.apep_data import ApepData
 from apep_core.apep_metadata import ApepMetadata
 from apep_core.apep_params import ApepParams
 
-from .squaring_dto import SquaringDto
-from .squaring_result import SquaringResult
+from .prime_factorizer_dto import PrimeFactorizerDto
+from .prime_factorizer_result import PrimeFactorizerResult
 
 @dataclass
-class SquaringFlow (ApepFlow):
-    flow_input: SquaringDto
+class PrimeFactorizerFlow (ApepFlow):
+    flow_input: PrimeFactorizerDto
     # Lo primero que haces es coger y mapear la entrada bien, validar, etc
     apep_params: ApepParams
     flow_name: str = None
@@ -19,17 +19,30 @@ class SquaringFlow (ApepFlow):
     def __post_init__(self):
         self.flow_name = self.__class__.__name__
 
+
+    def _to_primes(self, number: int):
+        prime_factors = []
+        divider = 2
+
+        while number > 1:
+            while number % divider == 0:
+                prime_factors.append(divider)
+                number //= divider
+            divider += 1
+
+        return prime_factors
+
     def execute(self) -> ApepOutput:
         self._print_params()
 
         exec_metadata = ApepMetadata(self.flow_name)
         result = ApepOutput(exec_metadata)
 
-        potencia = self.flow_input.base * self.flow_input.base
+        factors = self._to_primes(self.flow_input.number)
 
-        data = ApepData(SquaringResult(potencia), 0)
-
-        result.add_result(data)
+        for factor in factors:
+            data = ApepData(PrimeFactorizerResult(factor), 0)
+            result.add_result(data)
 
         result.set_execution_end()
     

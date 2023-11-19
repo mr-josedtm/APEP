@@ -2,6 +2,7 @@ from dataclasses import dataclass
 
 from apep_core.apep_flow_iface import ApepFlow
 from apep_core.apep_output import ApepOutput
+from apep_core.apep_data import ApepData
 from apep_core.apep_metadata import ApepMetadata
 from apep_core.apep_params import ApepParams
 
@@ -22,11 +23,14 @@ class SumFlow (ApepFlow):
         self._print_params()
 
         exec_metadata = ApepMetadata(self.flow_name)
+
         result = ApepOutput(exec_metadata)
 
         suma = self.flow_input.sumando_uno + self.flow_input.sumando_dos
 
-        result.add_result(SumResult(suma))
+        data = ApepData(SumResult(suma), 0)
+
+        result.add_result(data)
 
         result.set_execution_end()
     
@@ -40,6 +44,6 @@ class SumFlow (ApepFlow):
     # Control function to show the behaviour of drilling the params through steps
     def _print_params(self):
         params = self.apep_params.params
-        print(f"Printing execution params at class: {self.flow_name}")
+        print(f">>> Printing execution params at class: {self.flow_name}")
         for key, value in params.items():
             print(f"{key}: {value}")

@@ -6,15 +6,14 @@ from .apep_input import ApepInput
 from .apep_params import ApepParams
 from .apep_flow_iface import ApepFlow
 
-from .apep_field_def import ApepFieldDef as fd
-from .apep_field_type import ApepFieldType as ft
+# TODO create as interface
 
 class ApepFlowBuilder:
 
-    def get_input_contract() -> Dict:
+    def get_input_contract(self) -> Dict:
         pass
 
-    def check_required_envs() -> None:
+    def check_required_envs(self) -> None:
         pass
 
     @classmethod
