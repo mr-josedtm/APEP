@@ -36,15 +36,11 @@ def executor(flow_builder: ApepFlowBuilder, params: ApepParams, data_buffer: Ape
         print(f"=== Pinting results for {current_flow_result.metadata.execution_id}: ")
         for res in current_flow_result.get_results():
             print(res.__dict__)
-
     return step_result
 
-def sync_runner():
-    apep_params = read_params("C:/Users/Mx/workspace/APEP/apep_orchestrator/parameters_example.yml")
-
-    ## EXECUTION INPUT ##
-    raw_start_data = {"sumando_uno": 10, "sumando_dos": 30}
-    start_data = ApepData(raw_start_data, 0)
+def sync_runner(raw_input_data: str, params_path: str = None):
+    apep_params = read_params(params_path)
+    start_data = ApepData(raw_input_data, 0)
     flow_start_data = ApepDataBuffer([start_data])
 
     # Step 0
