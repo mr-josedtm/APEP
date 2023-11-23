@@ -86,9 +86,19 @@ Define el estado en que se encuentra la ejecución del flujo:
 Almacena los metadatos de la ejecución de un flujo. Su uso principal es monitorizar la ejecución de dicho flujo. Entre otros campos contiene el `status: ApepStatus`
 
 ## ApepOutput
-Encapsula el resultado de una ejecución. Entre otros campos, contiene:
-* `result: List[object]`: lista de resultados generados, todos ellos deben ser del mismo tipo. El resultado puede contener 0 a N objetos
-* `metadata: ApepMetadata`: metadatos asociados a la ejecución del flujo 
+Encapsula la salida de una ejecución. Contiene:
+* `result: List[ApepData]`: lista de resultados generados, todos ellos deben ser del mismo tipo. Puede contener 0 a N objetos
+* `metadata: ApepMetadata`: metadatos asociados a la ejecución del flujo
+La principal función es asociar los resultados producidos con los metadatos de la ejecución.
+
+## ApepData
+Cada uno de los resultados individuales de una ejecución junto con su prioridad de ejecución.
+* `result: object`: objeto resultado del flujo.
+* `priority: int = None`: prioridad de ejecución del resultado. El objetivo es poder paralelizar las ejeciones del step N que tienen como input la salida del step N-1 pero controland en qué orden se ejecutarán. Este orden puede ser absoluto [1, 2, ..., X] para indicar el orden exacto de ejecución o **reativo** [1, 1, 1, 2, 3, ..., N] para indicar que todos los resultados de orden X-1 tienen que ejecutarse antes que los de orden X
+
+## ApepDataBuffer
+Concentrador de resultados especialmente pensado para ejecuciones asíncronas donde N flujos del mismo tipo pueden estar ejecutándose en paralelo. Esperaremos a que todos ellos terminen y agruparemos sus resultados en este objeto con la intención de decidir si el siguiente step puede lanzarse full paralelo o priorizado
+
 
 # Interfaces
 
