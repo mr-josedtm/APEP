@@ -3,6 +3,7 @@ from apep_core.apep_params import ApepParams
 from apep_core.apep_data import ApepData
 from apep_core.apep_data_buffer import ApepDataBuffer
 from apep_core.apep_flow_builder_iface import ApepFlowBuilder
+from .params_reader import read_params
 from typing import Callable
 
 from apep_logger.apep_log import save_to_mongo
@@ -39,8 +40,7 @@ def executor(flow_builder: ApepFlowBuilder, params: ApepParams, data_buffer: Ape
     return step_result
 
 def sync_runner():
-    raw_params = {"my_parameter": "first parameter value", "other_param": 1.0}
-    apep_params = ApepParams(raw_params)
+    apep_params = read_params("C:/Users/Mx/workspace/APEP/apep_orchestrator/parameters_example.yml")
 
     ## EXECUTION INPUT ##
     raw_start_data = {"sumando_uno": 10, "sumando_dos": 30}
