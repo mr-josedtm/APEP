@@ -137,5 +137,5 @@ class SumBuilder(ApepFlowBuilder):
         return SumFlow(params, sum_dto)
 ```
 
-
-
+# Chart:
+![chart](./doc/apep_v1.png)
