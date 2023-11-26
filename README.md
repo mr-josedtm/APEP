@@ -8,10 +8,18 @@ Orientación serverless.
 Mantener separada la ejecución de la observación.
 
 > 📝 **_TODO_**:
+> * Builder env vars checker
 > * Todos los resultados del step N-1 deben procesarse y finalizar en el step N antes de lanzar ninguna ejecución del step N+1. Solo se lanzarán aquellos que finalicen OK.
 > * ¿Ejecuciones priorizadas? La salida de un step va parametrizada para priorizarlas y hasta que no estén terminadas todas las de orden X-1 no se lanzan las de orden X
 >   * Cualquier operación de orden X se podrá realizar en paralelo con una operación del mismo orden
 > * Al finalizar todas la ejecuciones de un step paralelizado, se reagrupan y se ordenan
+> * Evitar que se caiga en la dinámica de tener el mismo flow N veces con pequeñas particularizaciones porque no está bien abstraido
+> * Explorar intregraciones híbridas para funciones desplegadas y funciones del orquestador
+> * *Flow template* para facilitar el desarrollo en los distintos sabores
+> * Distintos sabores:
+>   * APEP serverfull -> un orquestado desplegado (paralelizable o secuencial) que ejecuta
+>   * APEP serverless -> un orquestador serverles. Secuencial, paralelizado en una función o paralelizado distribuído
+>   * APEP nano -> orientado a microscripts sin módulos predesarrollados. Más orientado a serverless aunque puede utilizarse en modo serverfull.  
 
 * La función del orquestador es:
     1. Leer los datos de arranque
