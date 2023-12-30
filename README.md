@@ -19,7 +19,8 @@ Mantener separada la ejecución de la observación.
 > * Distintos sabores:
 >   * APEP serverfull -> un orquestado desplegado (paralelizable o secuencial) que ejecuta
 >   * APEP serverless -> un orquestador serverles. Secuencial, paralelizado en una función o paralelizado distribuído
->   * APEP nano -> orientado a microscripts sin módulos predesarrollados. Más orientado a serverless aunque puede utilizarse en modo serverfull.  
+>   * APEP nano -> orientado a microscripts sin módulos predesarrollados. Más orientado a serverless aunque puede utilizarse en modo serverfull.
+> * Worker por core y asíncronas. Multiprocess de python 
 
 * La función del orquestador es:
     1. Leer los datos de arranque
